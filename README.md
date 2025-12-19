@@ -376,8 +376,3 @@ mypy src/sage/
 
 MIT License - see [LICENSE](LICENSE) for details.
 
----
-
-<p align="center">
-  <sub>Built with LangGraph and LangChain</sub>
-</p>
