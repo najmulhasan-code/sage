@@ -136,10 +136,10 @@ sage "Review this code for security issues" --agents security,performance,review
 
 # Different models
 sage "Explain quantum computing" --model gpt-4o-mini
-sage "Complex analysis task" --model claude-3-opus-20240229 --provider anthropic
+sage "Complex analysis task" --model claude-sonnet-4-5 --provider anthropic
 
 # Local models with Ollama
-sage "Summarize this document" --model llama2:latest --provider ollama
+sage "Summarize this document" --model llama3.2:latest --provider ollama
 
 # Control tools
 sage "Simple question" --no-tools
@@ -156,7 +156,7 @@ sage "Debug this" --verbose
 | Option | Description |
 |--------|-------------|
 | `--model` | Model to use (default: `gpt-4o`) |
-| `--provider` | LLM provider: `openai`, `anthropic`, `google`, `ollama`, `azure`, `bedrock` |
+| `--provider` | LLM provider: `openai`, `anthropic`, `google`, `ollama` |
 | `--agents` | Comma-separated agent roles (default: `researcher,critic,strategist`) |
 | `--temperature` | Sampling temperature 0.0-2.0 (default: 0.7) |
 | `--no-tools` | Disable all agent tools |
@@ -266,31 +266,29 @@ print(f"Phases: {result.phases_completed}")
 
 ## Supported Models
 
-SAGE works with any LangChain-compatible model:
+SAGE works with **any model** from supported providers—just pass the model name and it works.
 
 | Provider | Models | Setup |
 |----------|--------|-------|
-| **OpenAI** | `gpt-4o`, `gpt-4o-mini`, `gpt-4-turbo`, `o1`, `o3` | `OPENAI_API_KEY` |
-| **Anthropic** | `claude-3-opus`, `claude-3-sonnet`, `claude-3-haiku` | `ANTHROPIC_API_KEY` |
-| **Google** | `gemini-pro`, `gemini-1.5-pro`, `gemini-1.5-flash` | `GOOGLE_API_KEY` |
-| **Ollama** | `llama2`, `mistral`, `codellama`, `mixtral` | Local installation |
-| **Azure** | Azure-hosted OpenAI models | `AZURE_OPENAI_*` |
-| **AWS Bedrock** | Claude, Titan, and more | AWS credentials |
+| **OpenAI** | `gpt-5`, `gpt-5-mini`, `o3`, `o3-pro`, `o4-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4o`, `gpt-4o-mini` | `OPENAI_API_KEY` |
+| **Anthropic** | `claude-opus-4-5`, `claude-sonnet-4-5`, `claude-haiku-4-5`, `claude-opus-4`, `claude-sonnet-4` | `ANTHROPIC_API_KEY` |
+| **Google** | `gemini-3-flash-preview`, `gemini-2.5-pro`, `gemini-2.5-flash`, `gemini-2.5-flash-lite`, `gemini-2.0-flash` | `GOOGLE_API_KEY` |
+| **Ollama** | `deepseek-r1`, `llama3.2`, `llama3.1`, `qwen3`, `qwen2.5`, `mistral`, `gemma3`, `codellama`, `phi4` | Local installation |
 
 The provider is auto-detected from the model name:
 
 ```python
 # Auto-detected as OpenAI
-sage = Sage(model="gpt-4o")
+sage = Sage(model="gpt-5")
 
 # Auto-detected as Anthropic
-sage = Sage(model="claude-3-opus-20240229")
+sage = Sage(model="claude-sonnet-4-5")
+
+# Auto-detected as Google
+sage = Sage(model="gemini-2.5-flash")
 
 # Auto-detected as Ollama (has colon)
-sage = Sage(model="llama2:latest")
-
-# Explicit provider
-sage = Sage(model="gpt-4", provider="azure")
+sage = Sage(model="llama3.2:latest")
 ```
 
 ---
@@ -298,23 +296,30 @@ sage = Sage(model="gpt-4", provider="azure")
 ## Project Structure
 
 ```
-src/sage/
-├── __init__.py          # Package exports
-├── core.py              # Main Sage class
-├── types.py             # Data types (Agent, Config, Result)
-├── cli.py               # Command-line interface
-├── graph/
-│   ├── state.py         # LangGraph state schema
-│   └── workflow.py      # Workflow definition
-├── agents/
-│   ├── base.py          # SageAgent with tool support
-│   └── nodes.py         # Phase node functions
-├── tools/
-│   ├── web_search.py    # DuckDuckGo/Tavily search
-│   ├── code_exec.py     # Python REPL
-│   └── file_reader.py   # File operations
-└── providers/
-    └── factory.py       # Multi-provider model factory
+sage/
+├── src/sage/
+│   ├── __init__.py          # Package exports
+│   ├── core.py              # Main Sage class
+│   ├── types.py             # Data types (Agent, Config, Result)
+│   ├── cli.py               # Command-line interface
+│   ├── graph/
+│   │   ├── state.py         # LangGraph state schema
+│   │   └── workflow.py      # Workflow definition
+│   ├── agents/
+│   │   ├── base.py          # SageAgent with tool support
+│   │   └── nodes.py         # Phase node functions
+│   ├── tools/
+│   │   ├── web_search.py    # DuckDuckGo/Tavily search
+│   │   ├── code_exec.py     # Python REPL
+│   │   └── file_reader.py   # File operations
+│   └── providers/
+│       └── factory.py       # Multi-provider model factory
+└── examples/
+    ├── basic_usage.py       # Simple usage example
+    ├── custom_agents.py     # Custom agent teams
+    ├── multi_provider.py    # Using different LLM providers
+    ├── streaming_output.py  # Real-time callbacks
+    └── json_output.py       # JSON output format
 ```
 
 ---
@@ -330,7 +335,7 @@ SAGE includes predefined focuses for common roles:
 | `strategist` | Propose practical solutions and next steps |
 | `analyst` | Analyze data and identify patterns |
 | `creative` | Generate novel ideas and alternative approaches |
-| `technical` | Evaluate technical feasibility and implementation |
+| `technical` | Evaluate technical feasibility and implementation details |
 | `reviewer` | Review for completeness and quality |
 | `security` | Identify security vulnerabilities and risks |
 | `performance` | Analyze performance implications and optimizations |
