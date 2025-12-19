@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "agentsage"
-version = "0.1.1"
+version = "0.1.2"
 description = "SAGE: Synchronized Agents for Generalized Expertise - A multi-agent framework where AI agents research, debate, and synthesize answers together"
 readme = "README.md"
 license = {text = "MIT"}
@@ -55,7 +55,7 @@ dependencies = [
     "langchain-openai>=0.2.0",
     "langchain-community>=0.3.0",
     "langchain-experimental>=0.3.0",
-    "duckduckgo-search>=6.0.0",
+    "ddgs>=9.0.0",
     "python-dotenv>=1.0.0",
     "pydantic>=2.0.0",
     "rich>=13.0.0",
