@@ -266,7 +266,7 @@ print(f"Phases: {result.phases_completed}")
 
 ## Supported Models
 
-SAGE works with **any model** from supported providers—just pass the model name and it works.
+SAGE works with **any model** from supported providers, just pass the model name and it works.
 
 | Provider | Models | Setup |
 |----------|--------|-------|
