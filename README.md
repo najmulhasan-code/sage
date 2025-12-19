@@ -88,22 +88,22 @@ That's it. SAGE assembles a default team (researcher, critic, strategist), runs 
 SAGE orchestrates multiple AI agents through a structured workflow powered by [LangGraph](https://github.com/langchain-ai/langgraph):
 
 ```
-┌─────────────────────────────────────────────────────────────────────┐
-│                           SAGE WORKFLOW                              │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                      │
-│   ┌──────────────┐    ┌──────────────┐    ┌──────────────┐         │
-│   │  RESEARCH    │    │  DISCUSSION  │    │  SYNTHESIS   │         │
-│   │              │    │              │    │              │         │
-│   │  Agent 1 ────┼───►│  Agent 1 ────┼───►│              │         │
-│   │  Agent 2 ────┼───►│  Agent 2 ────┼───►│   Combined   │         │
-│   │  Agent 3 ────┼───►│  Agent 3 ────┼───►│    Answer    │         │
-│   │              │    │              │    │              │         │
-│   │  Web Search  │    │  Code Exec   │    │              │         │
-│   │  File Read   │    │  Validation  │    │              │         │
-│   └──────────────┘    └──────────────┘    └──────────────┘         │
-│                                                                      │
-└─────────────────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────────┐
+│                          SAGE WORKFLOW                             │
+├────────────────────────────────────────────────────────────────────┤
+│                                                                    │
+│  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐         │
+│  │  RESEARCH    │    │  DISCUSSION  │    │  SYNTHESIS   │         │
+│  │              │    │              │    │              │         │
+│  │  Agent 1 ────┼───►│  Agent 1 ────┼───►│              │         │
+│  │  Agent 2 ────┼───►│  Agent 2 ────┼───►│   Combined   │         │
+│  │  Agent 3 ────┼───►│  Agent 3 ────┼───►│    Answer    │         │
+│  │              │    │              │    │              │         │
+│  │  Web Search  │    │  Code Exec   │    │              │         │
+│  │  File Read   │    │  Validation  │    │              │         │
+│  └──────────────┘    └──────────────┘    └──────────────┘         │
+│                                                                    │
+└────────────────────────────────────────────────────────────────────┘
 ```
 
 ### Phase 1: Research
