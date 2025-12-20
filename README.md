@@ -102,6 +102,23 @@ SAGE orchestrates multiple AI agents through a structured workflow powered by [L
   └──────────────┘    └──────────────┘    └──────────────┘
 ```
 
+### Demo
+
+<p align="center">
+  <img src="assets/sage1.png" alt="Research Phase" width="700">
+</p>
+<p align="center"><em>Research Phase: Agents search and gather information independently</em></p>
+
+<p align="center">
+  <img src="assets/sage2.png" alt="Discussion Phase" width="700">
+</p>
+<p align="center"><em>Discussion Phase: Agents share findings and move to synthesis</em></p>
+
+<p align="center">
+  <img src="assets/sage3.png" alt="Final Output" width="700">
+</p>
+<p align="center"><em>Final Output: Synthesized answer with key insights and considerations</em></p>
+
 ### Phase 1: Research
 
 Each agent independently analyzes the problem from their unique perspective. They can use tools:
